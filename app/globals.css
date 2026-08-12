@@ -1,0 +1,162 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'Geist Mono', monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Brand tokens */
+  --color-emerald: var(--emerald);
+  --color-forest: var(--forest);
+  --color-gold: var(--gold);
+  --color-pink: var(--pink);
+  --color-sand: var(--sand);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+}
+
+:root {
+  color-scheme: dark;
+
+  /* Tropical dark base built on Dark Forest Green */
+  --background: oklch(0.19 0.035 168);
+  --foreground: oklch(0.97 0.01 150);
+
+  --card: oklch(0.24 0.04 168);
+  --card-foreground: oklch(0.97 0.01 150);
+  --popover: oklch(0.2 0.035 168);
+  --popover-foreground: oklch(0.97 0.01 150);
+
+  /* Deep Emerald Green */
+  --primary: oklch(0.68 0.14 163);
+  --primary-foreground: oklch(0.16 0.04 168);
+
+  --secondary: oklch(0.28 0.045 168);
+  --secondary-foreground: oklch(0.97 0.01 150);
+
+  --muted: oklch(0.27 0.035 168);
+  --muted-foreground: oklch(0.75 0.03 158);
+
+  --accent: oklch(0.83 0.15 88);
+  --accent-foreground: oklch(0.18 0.04 168);
+
+  --destructive: oklch(0.62 0.2 18);
+
+  --border: oklch(0.98 0.01 150 / 12%);
+  --input: oklch(0.98 0.01 150 / 14%);
+  --ring: oklch(0.68 0.14 163);
+
+  --radius: 0.9rem;
+
+  /* Named brand colors */
+  --emerald: oklch(0.68 0.14 163);
+  --forest: oklch(0.19 0.035 168);
+  --gold: oklch(0.83 0.15 88);
+  --pink: oklch(0.68 0.2 5);
+  --sand: oklch(0.94 0.03 90);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: linear-gradient(
+      135deg,
+      color-mix(in oklch, var(--sand) 14%, transparent),
+      color-mix(in oklch, var(--forest) 22%, transparent)
+    );
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .will-3d {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+  }
+
+  /* Hide scrollbars in the immersive experience */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(var(--sway-from, -2deg));
+  }
+  50% {
+    transform: rotate(var(--sway-to, 2deg));
+  }
+}
+
+@keyframes drift {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-120vh) translateX(40px);
+    opacity: 0;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
